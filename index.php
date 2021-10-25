@@ -484,106 +484,65 @@
 
 
             <div class="blog">
-                <div class="blog__item">
-                    <div class="blog__header">
-                        <a href="#">
-                            <img class="blog__photo" src="<?php echo get_template_directory_uri();?>/assets/img/blog1.jpg" alt="blog">
-                        </a>
-                        <div class="blog__date">
-                            <div class="blog__date-date">15</div> Jan
+
+                <?php 
+
+                    $posts = get_posts( array(
+                        'numberposts' => 3,
+                        'category'    => 0,
+                        'post_type'   => 'post',
+                        'suppress_filters' => true, 
+                    ) );
+
+                    foreach( $posts as $post ){
+                        setup_postdata($post);
+                        
+                ?>
+
+                    <article class="blog__item">
+                        <div class="blog__header">
+                            <a href="<?php the_permalink() ?>">
+                                <?php the_post_thumbnail('blog-img') ?>
+                            </a>
+                            <div class="blog__date">
+                                <div class="blog__date-date"><?php the_time('j') ?></div> <?php the_time('F') ?>
+                            </div>
                         </div>
-                    </div>
-                    <div class="blog__content">
-                        <div class="blog__title">
-                            <a href="#">Lorem ipsum dolor sit amet</a>
+                        <div class="blog__content">
+                            <div class="blog__title">
+                                <a href="<?php the_permalink() ?>"><?php the_title() ?></a>
+                            </div>
+                            <div class="blog__text">
+                                <?php the_excerpt(); ?>
+                            </div>
                         </div>
-                        <div class="blog__text">
-                            Consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua.
+                        <div class="blog__footer">
+                            <div class="blog-stat">
+                                <span class="blog-stat__item">
+                                    <img src="<?php echo get_template_directory_uri();?>/assets/img/VIEW.png" alt="">
+                                    <i class="far fa-eye"></i>
+                                    542
+                                </span>
+                                <span class="blog-stat__item">
+                                    <img src="<?php echo get_template_directory_uri();?>/assets/img/speech.png" alt="">
+                                    <i class="far fa-comment-dots"></i>
+                                    17
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="blog__footer">
-                        <div class="blog-stat">
-                            <span class="blog-stat__item">
-                                <img src="<?php echo get_template_directory_uri();?>/assets/img/VIEW.png" alt="">
-                                <i class="far fa-eye"></i>
-                                542
-                            </span>
-                            <span class="blog-stat__item">
-                                <img src="<?php echo get_template_directory_uri();?>/assets/img/speech.png" alt="">
-                                <i class="far fa-comment-dots"></i>
-                                17
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog__item">
-                    <div class="blog__header">
-                        <a href="#">
-                            <img class="blog__photo" src="<?php echo get_template_directory_uri();?>/assets/img/blog2.jpg" alt="blog">
-                        </a>
-                        <div class="blog__date">
-                            <div class="blog__date-date">14</div> Jan
-                        </div>
-                    </div>
-                    <div class="blog__content">
-                        <div class="blog__title">
-                            <a href="#">Lorem ipsum dolor sit amet</a>
-                        </div>
-                        <div class="blog__text">
-                            Consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua.
-                        </div>
-                    </div>
-                    <div class="blog__footer">
-                        <div class="blog-stat">
-                            <span class="blog-stat__item">
-                                <img src="<?php echo get_template_directory_uri();?>/assets/img/VIEW.png" alt="">
-                                <i class="far fa-eye"></i>
-                                542
-                            </span>
-                            <span class="blog-stat__item">
-                                <img src="<?php echo get_template_directory_uri();?>/assets/img/speech.png" alt="">
-                                <i class="far fa-comment-dots"></i>
-                                42
-                            </span>
-                        </div>
-                    </div>
-                </div>
-                <div class="blog__item">
-                    <div class="blog__header">
-                        <a href="#">
-                            <img class="blog__photo" src="<?php echo get_template_directory_uri();?>/assets/img/blog3.jpg" alt="blog">
-                        </a>
-                        <div class="blog__date">
-                            <div class="blog__date-date">12</div> Jan
-                        </div>
-                    </div>
-                    <div class="blog__content">
-                        <div class="blog__title">
-                            <a href="#">Lorem ipsum dolor sit amet</a>
-                        </div>
-                        <div class="blog__text">
-                            Consectetur adipiscing elit, sed do eiusmod tempor
-                            incididunt ut labore et dolore magna aliqua.
-                        </div>
-                    </div>
-                    <div class="blog__footer">
-                        <div class="blog-stat">
-                            <span class="blog-stat__item">
-                                <img src="<?php echo get_template_directory_uri();?>/assets/img/VIEW.png" alt="">
-                                <i class="far fa-eye"></i>
-                                542
-                            </span>
-                            <span class="blog-stat__item">
-                                <img src="<?php echo get_template_directory_uri();?>/assets/img/speech.png" alt="">
-                                <i class="far fa-comment-dots"></i>
-                                98
-                            </span>
-                        </div>
-                    </div>
-                </div>
+                    </article>
+
+                <?php
+
+                    }
+
+                    wp_reset_postdata();
+
+                ?>
+
+
             </div>
+
         </section> 
 
 
